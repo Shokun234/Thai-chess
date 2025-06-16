@@ -202,11 +202,11 @@ class Game:
         small_font = pygame.font.SysFont("comicsansms", 20)
 
         # text to show winner - Changed to Thai
-        text = winner + " ชนะ!"
+        text = winner + " Win!"
         winner_text = big_font.render(text, False, black_color)
 
         # create text to be shown on the reset button - Changed to Thai
-        reset_label = "เล่นอีกครั้ง"
+        reset_label = "Play again"
         reset_btn_label = small_font.render(reset_label, True, white_color)
 
         # show winner text

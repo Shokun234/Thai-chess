@@ -128,9 +128,9 @@ class Chess(object):
         small_font = pygame.font.SysFont("comicsansms", 20)
         # create text to be shown on the game menu - Changed to Thai
         if self.turn["black"]:
-            turn_text = small_font.render("ตา: ดำ", True, white_color)  # Turn: Black
+            turn_text = small_font.render("Turn: Black", True, white_color)  # Turn: Black
         elif self.turn["white"]:
-            turn_text = small_font.render("ตา: ขาว", True, white_color)  # Turn: White
+            turn_text = small_font.render("Turn: White", True, white_color)  # Turn: White
 
         # show welcome text
         self.screen.blit(turn_text,
@@ -473,10 +473,10 @@ class Chess(object):
         # Check if the captured piece is a Khun (King)
         if "white_ขุน" == p[0]:  # If white king is captured
             self.winner = "ดำ"  # Black wins
-            print("ดำ ชนะ!")  # Black wins!
+            print("Black Win!")  # Black wins!
         elif "black_ขุน" == p[0]:  # If black king is captured
             self.winner = "ขาว"  # White wins
-            print("ขาว ชนะ!")  # White wins!
+            print("White Win!")  # White wins!
 
         # add the captured piece to list
         self.captured.append(p)

@@ -37,4 +37,3 @@ class Piece(pygame.sprite.Sprite):
         # Retrieve the piece index using the Thai piece name
         piece_index = self.pieces[piece_name]
         surface.blit(self.spritesheet, coords, self.cells[piece_index])
-
