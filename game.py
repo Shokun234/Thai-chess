@@ -3,6 +3,11 @@ import pygame
 from pygame.locals import *
 from piece import Piece
 from chess import Chess
+import os
+import pygame
+from pygame.locals import *
+from piece import Piece
+from chess import Chess
 from utils import Utils
 
 
@@ -26,8 +31,8 @@ class Game:
         # create game window
         self.screen = pygame.display.set_mode([screen_width, screen_height])
 
-        # title of window
-        window_title = "Chess"
+        # title of window - Changed to Thai Chess
+        window_title = "หมากรุกไทย"
         # set window caption
         pygame.display.set_caption(window_title)
 
@@ -125,10 +130,10 @@ class Game:
         # create fonts for texts
         big_font = pygame.font.SysFont("comicsansms", 50)
         small_font = pygame.font.SysFont("comicsansms", 20)
-        # create text to be shown on the game menu
-        welcome_text = big_font.render("Chess", False, black_color)
-        created_by = small_font.render("Created by Sheriff", True, black_color)
-        start_btn_label = small_font.render("Play", True, white_color)
+        # create text to be shown on the game menu - Changed to Thai
+        welcome_text = big_font.render("Thai chess", False, black_color)
+        created_by = small_font.render("Created by Shokun234", True, black_color)
+        start_btn_label = small_font.render("Play", True, white_color)  # Changed to Thai
 
         # show welcome text
         self.screen.blit(welcome_text,
@@ -196,12 +201,12 @@ class Game:
         big_font = pygame.font.SysFont("comicsansms", 50)
         small_font = pygame.font.SysFont("comicsansms", 20)
 
-        # text to show winner
-        text = winner + " wins!"
+        # text to show winner - Changed to Thai
+        text = winner + " ชนะ!"
         winner_text = big_font.render(text, False, black_color)
 
-        # create text to be shown on the reset button
-        reset_label = "Play Again"
+        # create text to be shown on the reset button - Changed to Thai
+        reset_label = "เล่นอีกครั้ง"
         reset_btn_label = small_font.render(reset_label, True, white_color)
 
         # show winner text
