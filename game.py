@@ -5,20 +5,6 @@ from piece import Piece
 from chess import Chess
 from utils import Utils
 
-
-import os
-import pygame
-from pygame.locals import *
-from piece import Piece
-from chess import Chess
-import os
-import pygame
-from pygame.locals import *
-from piece import Piece
-from chess import Chess
-from utils import Utils
-
-
 class Game:
     def __init__(self):
         # screen dimensions
@@ -30,7 +16,7 @@ class Game:
         self.running = True
         # base folder for program resources
         self.resources = "res"
-
+ 
         # initialize game window
         pygame.display.init()
         # initialize font for text
@@ -39,8 +25,8 @@ class Game:
         # create game window
         self.screen = pygame.display.set_mode([screen_width, screen_height])
 
-        # title of window - Changed to Thai Chess
-        window_title = "หมากรุกไทย"
+        # title of window
+        window_title = "Chess but pawn"
         # set window caption
         pygame.display.set_caption(window_title)
 
@@ -55,13 +41,14 @@ class Game:
         # set game clock
         self.clock = pygame.time.Clock()
 
+
     def start_game(self):
-        """Function containing main game loop"""
+        """Function containing main game loop""" 
         # chess board offset
         self.board_offset_x = 0
         self.board_offset_y = 50
         self.board_dimensions = (self.board_offset_x, self.board_offset_y)
-
+        
         # get location of chess board image
         board_src = os.path.join(self.resources, "board.png")
         # load the chess board image
@@ -77,8 +64,8 @@ class Game:
         for x in range(0, 8):
             self.board_locations.append([])
             for y in range(0, 8):
-                self.board_locations[x].append([self.board_offset_x + (x * square_length),
-                                                self.board_offset_y + (y * square_length)])
+                self.board_locations[x].append([self.board_offset_x+(x*square_length), 
+                                                self.board_offset_y+(y*square_length)])
 
         # get location of image containing the chess pieces
         pieces_src = os.path.join(self.resources, "pieces.png")
@@ -98,7 +85,7 @@ class Game:
                     self.running = False
                 elif key_pressed[K_SPACE]:
                     self.chess.reset()
-
+            
             winner = self.chess.winner
 
             if self.menu_showed == False:
@@ -107,10 +94,12 @@ class Game:
                 self.declare_winner(winner)
             else:
                 self.game()
+            
+            
 
             # for testing mechanics of the game
-            # self.game()
-            # self.declare_winner(winner)
+            #self.game()
+            #self.declare_winner(winner)
 
             # update display
             pygame.display.flip()
@@ -119,6 +108,7 @@ class Game:
 
         # call method to stop pygame
         pygame.quit()
+    
 
     def menu(self):
         """method to show game menu"""
@@ -138,27 +128,27 @@ class Game:
         # create fonts for texts
         big_font = pygame.font.SysFont("comicsansms", 50)
         small_font = pygame.font.SysFont("comicsansms", 20)
-        # create text to be shown on the game menu - Changed to Thai
-        welcome_text = big_font.render("Thai chess", False, black_color)
-        created_by = small_font.render("Created by Shokun234", True, black_color)
-        start_btn_label = small_font.render("Play", True, white_color)  # Changed to Thai
-
+        # create text to be shown on the game menu
+        welcome_text = big_font.render("Chess", False, black_color)
+        created_by = small_font.render("Created by Shokun", True, black_color)
+        start_btn_label = small_font.render("Play", True, white_color)
+        
         # show welcome text
-        self.screen.blit(welcome_text,
-                         ((self.screen.get_width() - welcome_text.get_width()) // 2,
-                          150))
+        self.screen.blit(welcome_text, 
+                      ((self.screen.get_width() - welcome_text.get_width()) // 2, 
+                      150))
         # show credit text
-        self.screen.blit(created_by,
-                         ((self.screen.get_width() - created_by.get_width()) // 2,
-                          self.screen.get_height() - created_by.get_height() - 100))
+        self.screen.blit(created_by, 
+                      ((self.screen.get_width() - created_by.get_width()) // 2, 
+                      self.screen.get_height() - created_by.get_height() - 100))
         # show text on the Play button
-        self.screen.blit(start_btn_label,
-                         ((start_btn.x + (start_btn.width - start_btn_label.get_width()) // 2,
-                           start_btn.y + (start_btn.height - start_btn_label.get_height()) // 2)))
+        self.screen.blit(start_btn_label, 
+                      ((start_btn.x + (start_btn.width - start_btn_label.get_width()) // 2, 
+                      start_btn.y + (start_btn.height - start_btn_label.get_height()) // 2)))
 
         # get pressed keys
         key_pressed = pygame.key.get_pressed()
-        #
+        # 
         util = Utils()
 
         # check if left mouse button was clicked
@@ -170,19 +160,20 @@ class Game:
             if start_btn.collidepoint(mouse_coords[0], mouse_coords[1]):
                 # change button behavior as it is hovered
                 pygame.draw.rect(self.screen, white_color, start_btn, 3)
-
+                
                 # change menu flag
                 self.menu_showed = True
             # check if enter or return key was pressed
             elif key_pressed[K_RETURN]:
                 self.menu_showed = True
 
+
     def game(self):
         # background color
-        color = (0, 0, 0)
+        color = (0,0,0)
         # set backgound color
         self.screen.fill(color)
-
+        
         # show the chess board
         self.screen.blit(self.board_img, self.board_dimensions)
 
@@ -190,6 +181,7 @@ class Game:
         self.chess.play_turn()
         # draw pieces on the chess board
         self.chess.draw_pieces()
+
 
     def declare_winner(self, winner):
         # background color
@@ -209,27 +201,27 @@ class Game:
         big_font = pygame.font.SysFont("comicsansms", 50)
         small_font = pygame.font.SysFont("comicsansms", 20)
 
-        # text to show winner - Changed to Thai
-        text = winner + " Win!"
+        # text to show winner
+        text = winner + " wins!" 
         winner_text = big_font.render(text, False, black_color)
 
-        # create text to be shown on the reset button - Changed to Thai
-        reset_label = "Play again"
+        # create text to be shown on the reset button
+        reset_label = "Play Again"
         reset_btn_label = small_font.render(reset_label, True, white_color)
 
         # show winner text
-        self.screen.blit(winner_text,
-                         ((self.screen.get_width() - winner_text.get_width()) // 2,
-                          150))
-
+        self.screen.blit(winner_text, 
+                      ((self.screen.get_width() - winner_text.get_width()) // 2, 
+                      150))
+        
         # show text on the reset button
-        self.screen.blit(reset_btn_label,
-                         ((reset_btn.x + (reset_btn.width - reset_btn_label.get_width()) // 2,
-                           reset_btn.y + (reset_btn.height - reset_btn_label.get_height()) // 2)))
+        self.screen.blit(reset_btn_label, 
+                      ((reset_btn.x + (reset_btn.width - reset_btn_label.get_width()) // 2, 
+                      reset_btn.y + (reset_btn.height - reset_btn_label.get_height()) // 2)))
 
         # get pressed keys
         key_pressed = pygame.key.get_pressed()
-        #
+        # 
         util = Utils()
 
         # check if left mouse button was clicked
@@ -241,7 +233,7 @@ class Game:
             if reset_btn.collidepoint(mouse_coords[0], mouse_coords[1]):
                 # change button behavior as it is hovered
                 pygame.draw.rect(self.screen, white_color, reset_btn, 3)
-
+                
                 # change menu flag
                 self.menu_showed = False
             # check if enter or return key was pressed
