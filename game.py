@@ -3,6 +3,14 @@ import pygame
 from pygame.locals import *
 from piece import Piece
 from chess import Chess
+from utils import Utils
+
+
+import os
+import pygame
+from pygame.locals import *
+from piece import Piece
+from chess import Chess
 import os
 import pygame
 from pygame.locals import *
